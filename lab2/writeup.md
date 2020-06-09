@@ -53,9 +53,7 @@ part A的运行结果如下，由于A，B均为8*8矩阵，单位为int(4字节)
 
 理论上，两种方法都可以将缓存的MissNumber降到最小（32次）
 
-我选择第二种方法，修改后的代码见 [Cache测试-partB.asm](test code/Cache测试-partB.asm)
-
-修改的部分主要是把一次读取一个数变为读取四个，并把”写到TTY“封装为子程序，连续调用四次。
+我选择第二种方法，修改后的代码见 [Cache测试-partB.asm](test%20code/Cache%E6%B5%8B%E8%AF%95-PARTB.asm)修改的部分主要是把一次读取一个数变为读取四个，并把”写到TTY“封装为子程序，连续调用四次。
 
 ```asm
 	...
