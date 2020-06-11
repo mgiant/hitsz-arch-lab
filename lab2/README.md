@@ -53,25 +53,25 @@ part A的运行结果如下，由于A，B均为8*8矩阵，单位为int(4字节)
 
 理论上，两种方法都可以将缓存的MissNumber降到最小（32次）
 
-我选择第二种方法，修改后的代码见 [Cache测试-partB.asm](test%20code/Cache%E6%B5%8B%E8%AF%95-PARTB.asm)修改的部分主要是把一次读取一个数变为读取四个，并把”写到TTY“封装为子程序，连续调用四次。
+我选择第二种方法，修改后的代码见 [Cache测试-partB.asm](test%20code/Cache%E6%B5%8B%E8%AF%95-PARTB.asm)。修改的部分主要是把一次读取一个数变为读取四个，并把”写到TTY“封装为子程序，连续调用四次。
 
 ```asm
-	...
-	lw a0,0(t1)     # 读出A[i * M + j]的值
+    ...
+    lw a0,0(t1)     # 读出A[i * M + j]的值
     lw a1,4(t1)
-	lw a2,8(t1)
+    lw a2,8(t1)
     lw a3,12(t1)
-	...
+    ...
     lw a4,0(t5)     # 读出B[i * M + j]的值
     lw a5,4(t5)
     lw a6,8(t5)
     lw a7,12(t5)
-	
+    
     add a0,a0,a4   # A + B
     #sw s10,0(t0)   # 将 A + B的结果存储到RAM中
     jal ASCII_loop
-	add a0,a1,a5
-	jal ASCII_loop
+    add a0,a1,a5
+    jal ASCII_loop
     add a0,a2,a6
     jal ASCII_loop
     add a0,a3,a7
@@ -79,7 +79,7 @@ part A的运行结果如下，由于A，B均为8*8矩阵，单位为int(4字节)
 
     addi s9,s9,4        # j++
     bne s9,s8,m2        # 循环
-	...
+    ...
 
 ```
 
